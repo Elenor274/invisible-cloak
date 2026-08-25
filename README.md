@@ -1,8 +1,13 @@
+<p align="center">
+  <img src="assets/social-preview.jpg" alt="Invisible Cloak — real-time computer vision with Python and OpenCV" width="100%" />
+</p>
+
 # Invisible Cloak
 
 [![CI](https://github.com/Elenor274/invisible-cloak/actions/workflows/ci.yml/badge.svg)](https://github.com/Elenor274/invisible-cloak/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-5C3EE8?logo=opencv&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-22c55e)
 
 A real-time computer-vision experiment inspired by the invisibility cloak from Harry Potter. The application detects a red cloth in a webcam feed and replaces it with a previously captured background.
 
@@ -62,3 +67,7 @@ python -m pytest -q
 - Best results require a static camera and stable lighting.
 - Red objects elsewhere in the scene are hidden as well.
 - The background should remain unchanged after capture.
+
+## License
+
+Released under the [MIT License](LICENSE).
