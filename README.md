@@ -1,79 +1,64 @@
-# 🧙‍♂️ Invisible Cloak with Python & OpenCV  
-✨ A real invisibility effect built entirely with code – inspired by Harry Potter!
+# Invisible Cloak
 
-[🎥 Watch the demo on Instagram](https://www.instagram.com/Deepnamic)  
-[📲 Get the download link on Telegram](https://t.me/Deepnamic)
+[![CI](https://github.com/Elenor274/invisible-cloak/actions/workflows/ci.yml/badge.svg)](https://github.com/Elenor274/invisible-cloak/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-5C3EE8?logo=opencv&logoColor=white)
 
----
+A real-time computer-vision experiment inspired by the invisibility cloak from Harry Potter. The application detects a red cloth in a webcam feed and replaces it with a previously captured background.
 
-## ⚡ What is this?
+## How it works
 
-This Python project makes anything **red** in front of your webcam completely **disappear**,  
-by replacing it with the captured background — creating a magical cloak effect! 🪄
+```text
+Webcam frame → HSV conversion → red color mask → mask cleanup
+             → background replacement → real-time output
+```
 
-It uses:
-- OpenCV for real-time video processing
-- Color masking & background subtraction
-- A sprinkle of code magic 😉
+Red wraps around the edge of the HSV hue range, so the application combines two masks. Morphological operations remove noise, and Gaussian blur softens the replacement boundary.
 
----
-
-## 🧠 How it works
-
-1. Captures a clean background frame (while you're out of the frame)
-2. Detects red-colored areas in each frame
-3. Replaces those red areas with the background
-
-✅ No filters  
-✅ No editing  
-✅ Just pure Python + OpenCV
-
----
-
-## 🚀 Getting Started
-
-### 1. Install dependencies
+## Quick start
 
 ```bash
+git clone https://github.com/Elenor274/invisible-cloak.git
+cd invisible-cloak
+
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+python invisibility_cloak.py
 ```
 
-### 2. Run the program
+Move out of view while the background is captured. Then hold up a red cloth and press `Q` when you want to exit.
+
+### Options
 
 ```bash
-python Invisibility\ Cloak.py
+python invisibility_cloak.py \
+  --camera 0 \
+  --warmup 3 \
+  --background-frames 40
 ```
 
-- Wait 3–5 seconds for background capture  
-- Then hold a red cloth in front of the webcam and... **vanish!**
+## Project structure
 
----
+```text
+.
+├── invisibility_cloak.py
+├── tests/
+├── requirements.txt
+└── requirements-dev.txt
+```
 
-## 🖼 Demo
+## Tests
 
-![Demo](https://raw.githubusercontent.com/Elenor274/invisible-cloak/main/sample.gif)
+The image-processing functions are tested with synthetic frames, so CI does not need access to a webcam.
 
----
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+pytest -q
+```
 
-## 📁 Files
+## Limitations
 
-| File | Description |
-|------|-------------|
-| `Invisibility Cloak.py` | Main Python script |
-| `requirements.txt`     | Required dependencies |
-
----
-
-## 📡 Stay Connected
-
-- 📌 [Follow me on Instagram](https://www.instagram.com/Deepnamic)
-- 💬 [Join the Telegram Channel](https://t.me/Deepnamic)
-- ⭐ [Star this repo if you liked it](https://github.com/Elenor274/invisible-cloak)
-
----
-
-## ☕ Like it?
-
-Give this project a ⭐ on GitHub and share it with your friends!
-
----
+- Best results require a static camera and stable lighting.
+- Red objects elsewhere in the scene are hidden as well.
+- The background should remain unchanged after capture.
