@@ -54,7 +54,7 @@ The image-processing functions are tested with synthetic frames, so CI does not 
 
 ```bash
 pip install -r requirements.txt -r requirements-dev.txt
-pytest -q
+python -m pytest -q
 ```
 
 ## Limitations
